@@ -29,7 +29,7 @@ print(res.stderr)
 print(res.stdout)
 
 local_result_file = os.path.join(local_out_dir, "PHALP_" + input_file_name)
-if os.path.exist(local_result_file):
+if os.path.exists(local_result_file):
   shutil.move(local_result_file, args.output_path)
 else:
   raise Exception("Invalid output produced from 4D Humans model")
