@@ -3,6 +3,7 @@ import glob
 import argparse
 import shutil
 import subprocess
+os.environ["PYOPENGL_PLATFORM"] = "osmesa"
 
 program = argparse.ArgumentParser(formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=100))
 program.add_argument('-t', '--in-path', help='select an target image or video', dest='input_path')
@@ -24,7 +25,7 @@ for f in files:
 
 vid_source = 'video.source="' + args.input_path + '"'
 vid_out = 'video.output_dir="' + local_out_dir + '"'
-res = subprocess.run(["python3", "track.py", vid_source, vid_out], shell=False, capture_output=True, cwd="/4D-Humans/")
+res = subprocess.run(["python3", "track.py", vid_source, vid_out], shell=False, capture_output=True, cwd="/4D-Humans/", env=dict(os.environ))
 print(res.stderr)
 print(res.stdout)
 
