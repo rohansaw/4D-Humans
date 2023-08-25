@@ -2,6 +2,7 @@ import os
 import glob
 import argparse
 import shutil
+import subprocess
 
 program = argparse.ArgumentParser(formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=100))
 program.add_argument('-t', '--in-path', help='select an target image or video', dest='input_path')
@@ -15,8 +16,9 @@ input_folder_name = os.path.split(args.input_path)[1]
 input_file_name = os.path.split(args.input_path)[1]
 
 local_out_dir = "/4dhumans-res"
-os.mkdir(local_out_dir)
-files = glob.glob(local_out_dir)
+if not os.path.exists(local_out_dir):
+    os.mkdir(local_out_dir)
+files = glob.glob(local_out_dir + "/*")
 for f in files:
     os.remove(f)
 
