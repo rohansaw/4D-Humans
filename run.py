@@ -21,7 +21,7 @@ for f in files:
     os.remove(f)
 
 vid_source = 'video.source="' + args.input_path + '"'
-vid_out = local_out_dir
+vid_out = 'video.output_dir="' + local_out_dir + '"'
 res = subprocess.run(["python3", "track.py", vid_source, vid_out], shell=False, capture_output=True, cwd="/4D-Humans/")
 print(res.stderr)
 print(res.stdout)
